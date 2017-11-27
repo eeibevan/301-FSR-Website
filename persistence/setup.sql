@@ -1,4 +1,4 @@
-CREATE TABLE `users` (
+CREATE TABLE `users2ElectricBoogaloo` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `username` VARCHAR(200) UNIQUE NOT NULL,
   `password` VARBINARY(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `users` (
 CREATE TABLE `request` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `created` DATETIME NOT NULL DEFAULT NOW(),
+  `created` DATETIME NOT NULL,
   `class` VARCHAR(255) NOT NULL,
   `drives` INT NOT NULL DEFAULT 0,
   `operating_system` VARCHAR(255) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE `request` (
   `status` VARCHAR(200) NOT NULL DEFAULT 'Open',
   INDEX(`user_id`),
   INDEX (`status`),
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+  FOREIGN KEY (`user_id`) REFERENCES `users2ElectricBoogaloo`(`id`)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -26,6 +26,6 @@ CREATE TABLE `request` (
 -- Insert Fsr User
 -- Be Sure To Change The Password
 SET @SALT = SUBSTRING(MD5(RAND()), -10);
-INSERT INTO `users` (username, password, salt, is_active, role)
+INSERT INTO `users2ElectricBoogaloo` (username, password, salt, is_active, role)
 VALUES ('fsradmin@localhost', SHA2(concat(@SALT, 'password'), 512), @SALT, 1, 'fsr');
 

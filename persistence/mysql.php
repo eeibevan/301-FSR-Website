@@ -46,7 +46,7 @@ function persistUser($user) {
 
 function _insertUser($user) {
     $db = _getConnection();
-    $query = "INSERT INTO `users` (username, password, salt, is_active, role) VALUES (:Username, :Pass, :Salt, :Is_Active, :Role)";
+    $query = "INSERT INTO `users2ElectricBoogaloo` (username, password, salt, is_active, role) VALUES (:Username, :Pass, :Salt, :Is_Active, :Role)";
     $statement = $db->prepare($query);
 
     $statement->bindValue(':Username', $user->username);
@@ -62,7 +62,7 @@ function _insertUser($user) {
 
 function _updateUser($user) {
     $db = _getConnection();
-    $query = "UPDATE `users` SET `username`=:Username, `password`=:Pass, `salt`=:Salt, `is_active`=:Is_Active, `role`=:Role WHERE `id`=:Id";
+    $query = "UPDATE `users2ElectricBoogaloo` SET `username`=:Username, `password`=:Pass, `salt`=:Salt, `is_active`=:Is_Active, `role`=:Role WHERE `id`=:Id";
     $statement = $db->prepare($query);
 
     $statement->bindValue(':Username', $user->username);
@@ -98,7 +98,7 @@ function _userFromRow($result) {
 
 function getUserById($id) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `username`, `password`, `salt`, `is_active`, `role` FROM `users` WHERE id=:Id LIMIT 1";
+    $query = "SELECT `id`, `username`, `password`, `salt`, `is_active`, `role` FROM `users2ElectricBoogaloo` WHERE id=:Id LIMIT 1";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':Id', $id);
@@ -115,7 +115,7 @@ function getUserById($id) {
 
 function getUserByUsername($username) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `username`, `password`, `salt`, `is_active`, `role` FROM `users` WHERE `username`=:Username LIMIT 1";
+    $query = "SELECT `id`, `username`, `password`, `salt`, `is_active`, `role` FROM `users2ElectricBoogaloo` WHERE `username`=:Username LIMIT 1";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':Username', $username);
@@ -132,7 +132,7 @@ function getUserByUsername($username) {
 
 function deleteUser($id) {
     $db = _getConnection();
-    $statement = $db->prepare("DELETE FROM `users` WHERE `id`=:Id");
+    $statement = $db->prepare("DELETE FROM `users2ElectricBoogaloo` WHERE `id`=:Id");
     $statement->bindValue(":Id", $id);
     $statement->execute();
     $statement->closeCursor();
@@ -140,7 +140,7 @@ function deleteUser($id) {
 
 function getAllUsers() {
     $db  = _getConnection();
-    $query = "SELECT `id`, `username`, `is_active`, `role` FROM `users`";
+    $query = "SELECT `id`, `username`, `is_active`, `role` FROM `users2ElectricBoogaloo`";
 
     $statement = $db->prepare($query);
     $statement->execute();
@@ -264,7 +264,7 @@ function getAllRequests() {
 
 function _insertRequest($request) {
     $db = _getConnection();
-    $query = "INSERT INTO `request` (user_id, class, drives, operating_system, other, status) VALUES (:UserId, :Class, :Drives, :OperatingSystem, :Other, :Status)";
+    $query = "INSERT INTO `request` (user_id, class, drives, operating_system, other, status, created) VALUES (:UserId, :Class, :Drives, :OperatingSystem, :Other, :Status, NOW())";
     $statement = $db->prepare($query);
 
     $statement->bindValue(':UserId', $request->userId);
