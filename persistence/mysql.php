@@ -113,6 +113,23 @@ function getUserById($id) {
     }
 }
 
+function getReducedUserById($id) {
+    $db  = _getConnection();
+    $query = "SELECT SELECT `id`, `username`, `is_active`, `role` FROM `users2ElectricBoogaloo` WHERE id=:Id LIMIT 1";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':Id', $id);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+
+    if (count($result) > 0) {
+        return _userFromRow($result);
+    } else {
+        return null;
+    }
+}
+
 function getUserByUsername($username) {
     $db  = _getConnection();
     $query = "SELECT `id`, `username`, `password`, `salt`, `is_active`, `role` FROM `users2ElectricBoogaloo` WHERE `username`=:Username LIMIT 1";
