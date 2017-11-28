@@ -47,15 +47,21 @@ switch ($path) {
         $plainText = $_POST['password'];
 
         if (!isset($username)) {
-            http_response_code(400);
+            header(' ', true, 400);
             $resp['message'] = 'No Email Provided';
+            echo json_encode($resp);
+            die();
+        }
+        if (!isset($plainText)) {
+            header(' ', true, 400);
+            $resp['message'] = 'No Password Provided';
             echo json_encode($resp);
             die();
         }
 
         $user = getUserByUsername($username);
-        if ($user == null || !verifyPassword($plainText, $user->salt, $user->hashedPass)) {
-            http_response_code(400);
+        if ($user == null || $user->id == null || !verifyPassword($plainText, $user->salt, $user->hashedPass)) {
+            header(' ', true, 400);
             $resp['message'] = 'Email/Password Not Valid';
             echo json_encode($resp);
             die();
@@ -75,9 +81,10 @@ switch ($path) {
         break;
     case '/api/requests':
         if (!isset($_SESSION['userId'])) {
+            header(' ', true, 401);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(401);
+            die();
         }
 
         if (isset($_GET['id'])) {
@@ -101,28 +108,32 @@ switch ($path) {
         break;
     case '/api/requests/update':
         if (!isLoggedIn()) {
+            header(' ', true, 401);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(401);
+            die();
         }
 
         if (!isset($_POST['id'])) {
+            header(' ', true, 404);
             $resp['message'] = 'Not Found';
             echo json_encode($resp);
-            die(404);
+            die();
         }
 
         $request = getRequestById($_POST['id']);
         if ($request == null) {
+            header(' ', true, 404);
             $resp['message'] = 'Not Found';
             echo json_encode($resp);
-            die(404);
+            die();
         }
 
         if (!isFsr() && $request->id !== $_SESSION['userId']) {
+            header(' ', true, 403);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(403);
+            die();
         }
 
         if (isset($_POST['driveClass']))
@@ -147,9 +158,10 @@ switch ($path) {
         break;
     case '/api/requests/create':
         if (!isLoggedIn()) {
+            header(' ', true, 401);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(401);
+            die();
         }
 
         $request = new \Request();
@@ -163,22 +175,26 @@ switch ($path) {
         $response['id'] = persistRequest($request);
 
         echo json_encode($response);
-        die(201);
+        header(' ', true, 201);
         break;
     case '/api/requests/delete':
         if (!isLoggedIn()) {
+            header(' ', true, 401);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(401);
+            die();
         }
         $request = getRequestById($_POST['id']);
-        if ($request == null || $request->id == null)
-            die(404);
+        if ($request == null || $request->id == null) {
+            header(' ', true, 401);
+            die();
+        }
 
         if (!isFsr() && $request->userId !== $_SESSION['userId']) {
+            header(' ', true, 403);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
-            die(403);
+            die();
         }
 
         deleteRequest($request->id);
@@ -187,39 +203,46 @@ switch ($path) {
         break;
     case '/api/user/add':
         if (!isLoggedIn()) {
+            header(' ', true, 401);
             $resp['message'] = "Not Logged In";
             json_encode($resp);
-            die(401);
+            die();
         } else if (!isFsr()) {
+            header(' ', true, 403);
             $resp['message'] = "Not Authorised";
             json_encode($resp);
-            die(403);
+            die();
         }
 
         $resp['id'] = createUser($_POST['username'], $_POST['password'], $_POST['role'], 1);
+        header(' ', true, 201);
         echo json_encode($resp);
         break;
     case '/api/user/update':
         if (!isLoggedIn()) {
+            header(' ', true, 401);
             $resp['message'] = "Not Logged In";
             json_encode($resp);
-            die(401);
+            die();
         } else if (!isFsr()) {
+            header(' ', true, 403);
             $resp['message'] = "Not Authorised";
             json_encode($resp);
-            die(403);
+            die();
         }
         if (!isset($_POST['id'])) {
+            header(' ', true, 404);
             $resp['message'] = "No ID Provided";
             json_encode($resp);
-            die(404);
+            die();
         }
 
         $user = getUserById($_POST['id']);
         if ($user == null) {
+            header(' ', true, 404);
             $resp['message'] = "User Not Found";
             echo json_encode($resp);
-            die(404);
+            die();
         }
 
         if (isset($_POST['username']))
@@ -235,32 +258,39 @@ switch ($path) {
         echo json_encode($response);
         break;
     case '/api/users':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
 
-        if (!isFsr())
-            die(403);
+        if (!isFsr()) {
+            header(' ', true, 403);
+            die();
+        }
 
         if (isset($_GET['id'])) {
             echo json_encode(getUserById($_GET['id']));
             die();
         }
 
-        $test1 = getAllUsers();
-        $test = json_encode(getAllUsers());
         echo json_encode(getAllUsers());
         die();
         break;
     case '/api/user/changePass':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
         $currentUser = getUserById($_SESSION['userId']);
-        if ($currentUser == null || $currentUser->id == null)
-            die(404);
+        if ($currentUser == null || $currentUser->id == null) {
+            header(' ', true, 404);
+            die();
+        }
         if (!isset($_POST['password']) || strlen($_POST['password']) == 0) {
+            header(' ', true, 400);
             $resp['message'] = 'Password Required';
             json_encode($resp);
-            die(400);
+            die();
         }
 
         $currentUser->hashedPass = _generatePassword($_POST['password'], $currentUser->salt);
@@ -268,65 +298,96 @@ switch ($path) {
         echo json_encode($resp);
         break;
     case '/user':
-        if (!isset($_GET['id']))
-            die(404);
+        if (!isset($_GET['id'])) {
+            header(' ', true, 404);
+            die();
+        }
         $user = getUserById($_GET['id']);
-        if ($user == null)
-            die(404);
-        if (!isFsr() && $user->id !== $_SESSION['userId'])
-            die(403);
-
+        if ($user == null) {
+            header(' ', true, 404);
+            die();
+        }
+        if (!isFsr() && $user->id !== $_SESSION['userId']) {
+            header(' ', true, 403);
+            die();
+        }
         require_once 'userForm.php';
         break;
     case '/user/all':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
 
-        if (!isFsr())
-            die(403);
+        if (!isFsr()) {
+            header(' ', true, 403);
+            die();
+        }
         require_once 'allUsers.php';
         break;
     case '/userForm':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
 
-        if (!isFsr())
-            die(403);
+        if (!isFsr()) {
+            header(' ', true, 403);
+            die();
+        }
 
         require_once 'userForm.php';
         break;
     case '/changePass':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
         require_once 'changeMyPass.php';
         break;
     case '/requestForm':
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
         require_once 'requestForm.php';
         break;
     case '/request/edit':
         $request = getRequestById($_GET['id']);
-        if ($request == null)
-            die(404);
-        if (!isFsr() && $request->userId !== $_SESSION['userId'])
-            die(403);
+        if ($request == null) {
+            header(' ', true, 404);
+            die();
+        }
+        if (!isFsr() && $request->userId !== $_SESSION['userId']) {
+            header(' ', true, 403);
+            die();
+        }
         require_once 'requestForm.php';
         break;
     case '/request':
-        if (!isset($_GET['id']))
-            die(404);
+        if (!isset($_GET['id'])) {
+            header(' ', true, 404);
+            die();
+        }
         $request = getRequestById($_GET['id']);
-        if ($request == null || $request->id == null)
-            die(404);
-        if (!isFsr() && $request->userId !== $_SESSION['userId'])
-            die(403);
+        if ($request == null || $request->id == null) {
+            header(' ', true, 404);
+            die();
+        }
+        if (!isFsr() && $request->userId !== $_SESSION['userId']) {
+            header(' ', true, 403);
+            die();
+        }
         require_once 'viewDriveRequest.php';
         break;
     case '/schedule':
         require_once 'schedule.php';
         break;
     case '/viewDriveRequests':
-        if (!isLoggedIn())
-            die(401);
+        if (!isLoggedIn()) {
+            header(' ', true, 401);
+            die();
+        }
         require_once 'myRequests.php';
         break;
     default:
