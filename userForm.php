@@ -92,40 +92,43 @@
 <?php require_once 'nav.php' ?>
 
 <main role="main" class="container">
-    <?php if (isset($user)) {?>
-        <h1>Edit User</h1>
-    <?php } else { ?>
-        <h1>Create User</h1>
-    <?php } ?>
-    <form id="userForm" novalidate>
-        <div class="row">
-            <div class="form-group">
+    <div class="container">
+        <?php if (isset($user)) {?>
+            <h1>Edit User</h1>
+        <?php } else { ?>
+            <h1>Create User</h1>
+        <?php } ?>
+        <form class="form" id="userForm" novalidate>
+
+            <div class="form-group col-lg-5">
                 <label for="username">Username</label>
                 <input id="username" type="text" class="form-control" placeholder="fsradmin" value="<?php echo htmlspecialchars($user->username)?>" required>
                 <div class="invalid-feedback">Username is required</div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-5">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="password" <?php if (!isset($user)) echo 'required'; ?>/>
                 <div class="invalid-feedback">Password is required</div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-3">
                 <label for="role">Role</label>
-                <select type="text" class="form-control" id="role" required>
+                <select class="form-control" id="role" required>
                     <option value="fsr" <?php if (isset($user) && $user->role === 'fsr') echo 'selected';?> >FSR</option>
                     <option value="faculty" <?php if (isset($user) && $user->role === 'faculty') echo 'selected';?>>Faculty</option>
                 </select>
                 <div class="invalid-feedback">Role is required</div>
             </div>
-        </div>
 
-        <?php if (isset($user)) {?>
-            <button class="btn btn-lg btn-primary float-right" type="submit">Edit User</button>
-        <?php } else { ?>
-            <button class="btn btn-lg btn-primary float-right" type="submit">Create User</button>
-        <?php } ?>
 
-    </form>
+            <?php if (isset($user)) {?>
+                <button class="btn btn-lg btn-primary offset-lg-4" type="submit">Edit User</button>
+            <?php } else { ?>
+                <button class="btn btn-lg btn-primary offset-lg-4" type="submit">Create User</button>
+            <?php } ?>
+
+        </form>
+    </div>
+
 </main>
 </body>
 </html>

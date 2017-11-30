@@ -44,7 +44,7 @@
 <?php require_once 'nav.php' ?>
 
 <main role="main" class="container">
-    <table id="userTable" class="table">
+    <table id="userTable" class="table table-striped table-responsive-sm">
         <thead>
         <tr>
             <th>Username</th>

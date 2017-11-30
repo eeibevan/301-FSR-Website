@@ -47,7 +47,7 @@
 <?php require_once 'nav.php' ?>
 
 <main role="main" class="container">
-    <table id="requestsTable" class="table">
+    <table id="requestsTable" class="table table-striped table-responsive-sm">
         <thead>
         <tr>
             <th>Class</th>

@@ -7,6 +7,10 @@ nav {
     font-size: 1.20em !important;
 }
 
+pre {
+    font-family: "IBM Plex Sans" !important;
+}
+
 .navbar-brand {
     font-size: 1.35em;
 }

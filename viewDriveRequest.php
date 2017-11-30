@@ -15,6 +15,12 @@
         #controlButtons button,a {
             margin-right: 15px;
         }
+        #otherReqsVal {
+            margin-left: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -73,7 +79,7 @@
 
 <main role="main" style="font-size: 1.35em" class="container">
     <h1>Drive Request</h1>
-    <div class="form-group">
+    <div class="form-group" >
         <div>Class: <?php echo htmlspecialchars($request->class)?></div>
     </div>
     <div class="form-group">
@@ -86,9 +92,9 @@
         <div>Operating System: <?php echo htmlspecialchars($request->operatingSystem)?></div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="otherReqs">
         <div>Software / Other Requirements:</div>
-        <pre><?php echo htmlspecialchars($request->other)?></pre>
+        <pre id="otherReqsVal"><?php echo htmlspecialchars($request->other)?></pre>
     </div>
     <?php if (isFsr() || $request->userId === $_SESSION['userId']) { ?>
     <div id="controlButtons" class="form-group">
