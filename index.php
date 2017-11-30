@@ -9,7 +9,7 @@ function isFaculty() {
     if (!isLoggedIn())
         return false;
     $user = getUserById($_SESSION['userId']);
-    if ($user == null)
+    if (is_null($user))
         return false;
     return $user->role === 'faculty';
 }
@@ -18,7 +18,7 @@ function isFsr() {
     if (!isLoggedIn())
         return false;
     $user = getUserById($_SESSION['userId']);
-    if ($user == null)
+    if (is_null($user))
         return false;
     return $user->role === 'fsr';
 }
@@ -86,7 +86,7 @@ switch ($path) {
         }
 
         $user = getUserByUsername($username);
-        if ($user == null || $user->id == null || !verifyPassword($plainText, $user->salt, $user->hashedPass)) {
+        if (is_null($user)|| $user->id == null || !verifyPassword($plainText, $user->salt, $user->hashedPass)) {
             header(' ', true, 400);
             $resp['message'] = 'Email/Password Not Valid';
             echo json_encode($resp);
@@ -219,7 +219,7 @@ switch ($path) {
             die();
         }
 
-        if (!isFsr() && $request->id !== $_SESSION['userId']) {
+        if (!isFsr() && $request->userId !== $_SESSION['userId']) {
             header(' ', true, 403);
             $resp['message'] = 'Unauthorized';
             echo json_encode($resp);
@@ -397,7 +397,7 @@ switch ($path) {
         }
 
         $existingUser = getUserByUsername($_POST['username']);
-        if ($existingUser != null || $existingUser->id != null) {
+        if (!is_null($existingUser)) {
             header(' ', true, 409);
             $resp['message'] = "Email Already Used";
             die();
@@ -465,7 +465,7 @@ switch ($path) {
         }
 
         $user = getUserById($_POST['id']);
-        if ($user == null) {
+        if (is_null($user)) {
             header(' ', true, 404);
             $resp['message'] = "User Not Found";
             echo json_encode($resp);
@@ -557,7 +557,7 @@ switch ($path) {
             die();
         }
         $currentUser = getUserById($_SESSION['userId']);
-        if ($currentUser == null || $currentUser->id == null) {
+        if (is_null($currentUser)) {
             header(' ', true, 404);
             die();
         }
@@ -598,7 +598,7 @@ switch ($path) {
             die();
         }
         $user = getUserById($_GET['id']);
-        if ($user == null) {
+        if (is_null($user)) {
             header(' ', true, 404);
             die();
         }
