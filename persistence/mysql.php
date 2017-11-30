@@ -106,7 +106,7 @@ function getUserById($id) {
     $result = $statement->fetch();
     $statement->closeCursor();
 
-    if (count($result) > 0) {
+    if ($result) {
         return _userFromRow($result);
     } else {
         return null;
@@ -140,7 +140,7 @@ function getUserByUsername($username) {
     $result = $statement->fetch();
     $statement->closeCursor();
 
-    if (count($result) > 0) {
+    if ($result) {
         return _userFromRow($result);
     } else {
         return null;
