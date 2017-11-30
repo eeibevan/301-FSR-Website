@@ -474,7 +474,7 @@ switch ($path) {
 
         if (isset($_POST['username'])) {
             $existingUser = getUserByUsername($_POST['username']);
-            if ($existingUser != null || $existingUser->id != null) {
+            if ($existingUser->id != null && $existingUser->id != $user->id) {
                 header(' ', true, 409);
                 $resp['message'] = "Email Already Used";
                 die();
