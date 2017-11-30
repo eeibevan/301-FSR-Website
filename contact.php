@@ -15,7 +15,7 @@
 
 <main role="main" class="container align-content-center align-items-center">
     <h3>Lab Employees</h3>
-    <table class="table">
+    <table class="table table-striped table-sm table-responsive-sm">
         <thead>
         <tr>
             <th>Name</th>
@@ -30,16 +30,8 @@
             <td>A.D.Day@eagle.clarion.edu</td>
         </tr>
         <tr>
-            <td>Gabler, John</td>
-            <td>J.O.Gabler@eagle.clarion.edu</td>
-        </tr>
-        <tr>
             <td>Holben, Tyler</td>
             <td>T.S.Holben@eagle.clarion.edu</td>
-        </tr>
-        <tr>
-            <td>Knepp, Logan</td>
-            <td>L.Knepp@eagle.clarion.edu</td>
         </tr>
         <tr>
             <td>Maitland, Keith</td>
@@ -50,20 +42,17 @@
             <td>E.C.Stanton@eagle.clarion.edu</td>
         </tr>
         <tr>
-            <td>Trinclisti, Tylor</td>
-            <td>T.I.Trinclisti@eagle.clarion.edu</td>
-        </tr>
-        <tr>
             <td>Vigus, Trey</td>
             <td>T.M.Vigus@eagle.clarion.edu</td>
         </tr>
     </table>
-    <h3>FSR Employees</h3>
-    <table class="table">
+
+    <h3 style="margin-top: 75px">FSR Employees</h3>
+    <table class="table table-striped table-sm table-responsive-sm">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
         </tr>
         </thead>
         <tr>
