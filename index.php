@@ -797,6 +797,11 @@ switch ($path) {
         }
         require_once 'myRequests.php';
         break;
+    case '/chicken':
+        header("Content-type: application/pdf");
+        header("Content-Disposition: inline; filename=chicken.pdf");
+        @readfile('node_modules/cnn/chicken.pdf');
+        break;
     default:
         require_once 'home.php';
         break;

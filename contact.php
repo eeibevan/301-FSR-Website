@@ -55,7 +55,7 @@
             <th scope="col">Email</th>
         </tr>
         </thead>
-        <tr>
+        <tr onclick="window.location.href = './index.php?path=/chicken'">
             <td>Black, Evan</td>
             <td>E.P.Black@eagle.clarion.edu</td>
         </tr>
