@@ -23,6 +23,20 @@ function isFsr() {
     return $user->role === 'fsr';
 }
 
+
+// Use HTTP Strict Transport Security to force client to use secure connections only
+$use_sts = true;
+
+// iis sets HTTPS to 'off' for non-SSL requests
+if ($use_sts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    header('Strict-Transport-Security: max-age=31536000');
+} elseif ($use_sts) {
+    header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], true, 301);
+    // we are in cleartext at the moment, prevent further execution and output
+    die();
+}
+
+
 if (isset($_GET['path']))
     $path = $_GET['path'];
 else if (isset($_POST['path']))
