@@ -304,8 +304,8 @@ switch ($path) {
 
         $response['id'] = persistRequest($request);
 
-        echo json_encode($response);
         header(' ', true, 201);
+        echo json_encode($response);
         break;
 
     /**
