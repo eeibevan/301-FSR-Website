@@ -1,5 +1,5 @@
 body {
-    font-family: "IBM Plex Sans" !important;
+    font-family: "IBM Plex Sans", sans-serif !important;
     background-image: url("../img/grunge-wall.png");
 }
 
@@ -8,7 +8,7 @@ nav {
 }
 
 pre {
-    font-family: "IBM Plex Sans" !important;
+    font-family: "IBM Plex Sans", sans-serif !important;
 }
 
 .navbar-brand {
