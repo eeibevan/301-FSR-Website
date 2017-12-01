@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark mb-4 bg-company-gold">
-    <a class="navbar-brand" href="#">Becker Lab</a>
+    <a class="navbar-brand" href="./index.php?path=/home">Becker Lab</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
