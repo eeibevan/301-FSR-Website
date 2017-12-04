@@ -7,6 +7,15 @@
     <title>Contact</title>
 
     <?php require_once 'scriptAndCss.php' ?>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            if (Math.random() > .9) {
+                $("#ethanName").html("420, Weeblord")
+            }
+        })
+    </script>
 
 </head>
 <body>
@@ -14,7 +23,7 @@
 <?php require_once 'nav.php' ?>
 
 <main role="main" class="container align-content-center align-items-center">
-    <h3>Lab Employees</h3>
+    <h3 style="cursor: pointer" onclick="window.location.href = './index.php?path=/chicken'" >Lab Employees</h3>
     <table class="table table-striped table-sm table-responsive-sm">
         <thead>
         <tr>
@@ -55,7 +64,7 @@
             <th scope="col">Email</th>
         </tr>
         </thead>
-        <tr onclick="window.location.href = './index.php?path=/chicken'">
+        <tr>
             <td>Black, Evan</td>
             <td>E.P.Black@eagle.clarion.edu</td>
         </tr>
@@ -68,7 +77,7 @@
             <td>J.L.Georgvich@eagle.clarion.edu</td>
         </tr>
         <tr>
-            <td>420, WeebLord</td>
+            <td id="ethanName">Dyer, Ethan</td>
             <td>E.J.Dyer@eagle.clarion.edu</td>
         </tr>
     </table>
