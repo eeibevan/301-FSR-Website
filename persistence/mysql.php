@@ -12,6 +12,7 @@ class User {
 class Request {
     public $id;
     public $userId;
+    public $username;
     public $created;
     public $class;
     public $drives;
@@ -171,11 +172,17 @@ function getAllUsers() {
     return $parsedResults;
 }
 
+define('REQUEST_QUERY',
+    "SELECT `request`.`id` AS `id`, `user_id`, `users`.`username` AS `username` ,`created`, `class`, `drives`, `operating_system`, `other`, `status` 
+FROM `request`
+INNER JOIN users2ElectricBoogaloo users ON request.user_id = users.id");
+
 function _requestFromRow($row) {
     $request = new \Request();
 
     $request->id = $row['id'];
     $request->userId = $row['user_id'];
+    $request->username = $row['username'];
     $request->created = $row['created'];
     $request->class = $row['class'];
     $request->drives = $row['drives'];
@@ -188,7 +195,7 @@ function _requestFromRow($row) {
 
 function getRequestById($id) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `user_id`, `created`, `class`, `drives`, `operating_system`, `other`, `status` FROM `request` WHERE `id`=:Id";
+    $query =  REQUEST_QUERY ." WHERE `id`=:Id";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':Id', $id);
@@ -205,7 +212,7 @@ function getRequestById($id) {
 
 function getRequestsForUser($userId) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `user_id`, `created`, `class`, `drives`, `operating_system`, `other`, `status` FROM `request` WHERE `user_id`=:UserId ORDER BY `created` DESC ";
+    $query = REQUEST_QUERY . " WHERE `user_id`=:UserId ORDER BY `created` DESC ";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':UserId', $userId);
@@ -224,7 +231,7 @@ function getRequestsForUser($userId) {
 
 function getRequestsForUserByStatus($userId, $status) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `user_id`, `created`, `class`, `drives`, `operating_system`, `other`, `status` FROM `request` WHERE `user_id`=:UserId AND `status`=:Status ORDER BY `created` DESC";
+    $query = REQUEST_QUERY . " WHERE `user_id`=:UserId AND `status`=:Status ORDER BY `created` DESC";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':UserId', $userId);
@@ -244,7 +251,7 @@ function getRequestsForUserByStatus($userId, $status) {
 
 function getRequestsByStatus($status) {
     $db  = _getConnection();
-    $query = "SELECT `id`, `user_id`, `created`, `class`, `drives`, `operating_system`, `other`, `status` FROM `request` WHERE `status`=:Status ORDER BY `created` DESC";
+    $query = REQUEST_QUERY . " WHERE `status`=:Status ORDER BY `created` DESC";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':Status', $status);
@@ -263,7 +270,7 @@ function getRequestsByStatus($status) {
 
 function getAllRequests() {
     $db  = _getConnection();
-    $query = "SELECT `id`, `user_id`, `created`, `class`, `drives`, `operating_system`, `other`, `status` FROM `request` ORDER BY `created` DESC";
+    $query = REQUEST_QUERY ." ORDER BY `created` DESC";
 
     $statement = $db->prepare($query);
     $statement->execute();

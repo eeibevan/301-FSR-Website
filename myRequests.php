@@ -30,6 +30,7 @@
                         var request = data[i];
                         accumulator += "<tr>" +
                             "<td><a href='./index.php?path=/request&id=" + request.id + "'>" + request.class + "</a></td>" +
+                            "<td>" + request.username + "</td>" +
                             "<td>" + request.status + "</td>" +
                             "<td>" + request.drives + "</td>" +
                             "<td>" + request.operatingSystem + "</td>" +
@@ -51,6 +52,7 @@
         <thead>
         <tr>
             <th>Class</th>
+            <th>Author</th>
             <th>Status</th>
             <th># of Drives</th>
             <th>Operating System</th>
