@@ -195,7 +195,7 @@ function _requestFromRow($row) {
 
 function getRequestById($id) {
     $db  = _getConnection();
-    $query =  REQUEST_QUERY ." WHERE `id`=:Id";
+    $query =  REQUEST_QUERY ." WHERE `request`.`id`=:Id";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':Id', $id);
