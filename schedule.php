@@ -31,64 +31,64 @@
         <tr>
             <th scope="row" class="text-nowrap">9am</th>
             <td>Liz</td>
-            <td>Collin</td>
+            <td>Keith</td>
             <td>Liz</td>
-            <td>Collin</td>
+            <td>Keith</td>
             <td>Liz</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">10am</th>
-            <td>Liz</td>
-            <td>Keith</td>
-            <td>Liz</td>
-            <td>Keith</td>
-            <td>Trey</td>
+            <td>Thomas</td>
+            <td>David</td>
+            <td>Thomas</td>
+            <td>David</td>
+            <td>Thomas</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">11pm</th>
-            <td>Trey</td>
-            <td>Keith</td>
-            <td>Trey</td>
-            <td>Keith</td>
-            <td>Chris</td>
+            <td>Alex</td>
+            <td>David</td>
+            <td>Alex</td>
+            <td>David</td>
+            <td>Alex</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">12pm</th>
-            <td>Tom</td>
-            <td>Alex</td>
-            <td>Tom</td>
             <td>Trey</td>
-            <td>Tom</td>
+            <td>Evan</td>
+            <td>Trey</td>
+            <td>Evan</td>
+            <td>Trey</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">1pm</th>
-            <td>Chris</td>
-            <td>Trey</td>
-            <td>Keith</td>
-            <td>Alex</td>
-            <td>Evan</td>
+            <td>Collin</td>
+            <td>Thomas</td>
+            <td>Collin</td>
+            <td>Thomas</td>
+            <td>Collin</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">2pm</th>
-            <td>Tom</td>
-            <td>Collin</td>
-            <td>Tom</td>
-            <td>Collin</td>
+            <td>Keith</td>
+            <td>Trey</td>
+            <td>Liz</td>
+            <td>John</td>
             <td>CLOSED</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">3pm</th>
-            <td>Alex</td>
+            <td>Keith</td>
             <td>Collin</td>
-            <td>Alex</td>
-            <td>Alex</td>
+            <td>Keith</td>
+            <td>Collin</td>
             <td>CLOSED</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">4pm</th>
-            <td>Evan</td>
-            <td>Collin</td>
-            <td>Keith</td>
+            <td>Trey</td>
+            <td>Alex</td>
+            <td>David</td>
             <td>Alex</td>
             <td>CLOSED</td>
         </tr>
@@ -117,34 +117,34 @@
         <tr>
             <th scope="row" class="text-nowrap">9am</th>
             <td>Chris</td>
-            <td>Evan/John</td>
-            <td>Chris</td>
-            <td>Evan/John</td>
             <td></td>
+            <td>Chris</td>
+            <td></td>
+            <td>Chris</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">10am</th>
             <td></td>
-            <td>Evan/John</td>
             <td></td>
-            <td>Evan/John</td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">11pm</th>
             <td></td>
-            <td>Chris</td>
+            <td>Ethan/Evan</td>
             <td></td>
-            <td>Chris</td>
+            <td>Ethan/Evan</td>
             <td></td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">12pm</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">1pm</th>
@@ -156,26 +156,26 @@
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">2pm</th>
-            <td>All</td>
             <td></td>
             <td>John</td>
+            <td>Evan</td>
             <td></td>
-            <td>Evan/John</td>
+            <td></td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">3pm</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Evan/Chris</td>
+            <td>All</td>
+            <td>Evan/Chris</td>
+            <td>Ethan/John</td>
+            <td>Evan</td>
         </tr>
         <tr>
             <th scope="row" class="text-nowrap">4pm</th>
             <td></td>
+            <td>Ethan/John</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>Ethan/John</td>
             <td></td>
         </tr>
     </table>
