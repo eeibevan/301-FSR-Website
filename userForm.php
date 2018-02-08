@@ -102,7 +102,7 @@
 
             <div class="form-group col-lg-5">
                 <label for="username">Username</label>
-                <input id="username" type="text" class="form-control" placeholder="fsradmin" value="<?php echo htmlspecialchars($user->username)?>" required>
+                <input id="username" type="text" class="form-control" placeholder="fsradmin" value="<?php if (isset($user)) { echo htmlspecialchars($user->username); }?>" required>
                 <div class="invalid-feedback">Username is required</div>
             </div>
             <div class="form-group col-lg-5">

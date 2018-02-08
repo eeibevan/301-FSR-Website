@@ -108,24 +108,24 @@
         <div class="row">
             <div class="form-group col-4">
                 <label for="forClass">Class</label>
-                <input id="forClass" type="text" class="form-control" placeholder="CIS 312" value="<?php echo htmlspecialchars($request->class)?>" required>
+                <input id="forClass" type="text" class="form-control" placeholder="CIS 312" value="<?php if (isset($request)) {echo htmlspecialchars($request->class); }?>" required>
                 <div class="invalid-feedback">Class is required</div>
             </div>
             <div class="form-group col-4">
                 <label for="numberOfDrives">Number of Drives</label>
-                <input type="number" class="form-control" id="numberOfDrives" placeholder="28" value="<?php echo htmlspecialchars($request->drives)?>" required/>
+                <input type="number" class="form-control" id="numberOfDrives" placeholder="28" value="<?php if (isset($request)) { echo htmlspecialchars($request->drives); }?>" required/>
                 <div class="invalid-feedback">Number of Drives is required</div>
             </div>
             <div class="form-group col-4">
                 <label for="operatingSystem">Operating System</label>
-                <input type="text" class="form-control" id="operatingSystem" placeholder="Windows 10" value="<?php echo htmlspecialchars($request->operatingSystem)?>" required/>
+                <input type="text" class="form-control" id="operatingSystem" placeholder="Windows 10" value="<?php if (isset($request)) { echo htmlspecialchars($request->operatingSystem); }?>" required/>
                 <div class="invalid-feedback">Operating System is required</div>
             </div>
         </div>
 
         <div class="form-group">
             <label for="softwareAndOtherRequirements">Software / Other Requirements</label>
-            <textarea class="form-control" id="softwareAndOtherRequirements" rows="10"><?php echo htmlspecialchars($request->other)?></textarea>
+            <textarea class="form-control" id="softwareAndOtherRequirements" rows="10"><?php if (isset($request)) { echo htmlspecialchars($request->other); }?></textarea>
         </div>
         <?php if (isset($request)) {?>
         <button class="btn btn-lg btn-primary float-right" type="submit">Edit request</button>
