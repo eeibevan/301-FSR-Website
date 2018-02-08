@@ -84,8 +84,10 @@ function _userFromRow($result) {
 
     $user->id = $result['id'];
     $user->username = $result['username'];
-    $user->hashedPass = $result['password'];
-    $user->salt = $result['salt'];
+    if (isset($result['password']))
+        $user->hashedPass = $result['password'];
+    if (isset($result['salt']))
+        $user->salt = $result['salt'];
 
     if ($result['is_active'] > 0)
         $user->isActive = true;
